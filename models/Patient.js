@@ -95,6 +95,24 @@ class Patient {
       });
     });
   }
+  async searc(name) {
+    return await this.Patient.findAll({
+      where: {
+        name: {
+          [this.db.Sequelize.Op.like]: `%${name}%`
+        }
+      }
+    });
+  }
+
+  async findByStatus(status) {
+    return await this.Patient.findAll({
+      where: {
+        status
+      }
+    });
+  }
+
 }
 
 // export class Patient

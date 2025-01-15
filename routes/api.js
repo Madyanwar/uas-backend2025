@@ -19,5 +19,9 @@ router.get("/patients/:id", PatientController.show)
 router.post("/patients", PatientController.store)
 router.put("/patients/:id", PatientController.update)
 router.delete("/patients/:id", PatientController.destroy)
+router.get("/patients/search/:name", PatientController.search)
+router.get("/patients/status/positive", PatientController.findByStatus)
+router.get("/patients/status/recovered", PatientController.findByStatus)
+router.get("/patients/status/dead", PatientController.findByStatus)
 // export router
 module.exports = router;

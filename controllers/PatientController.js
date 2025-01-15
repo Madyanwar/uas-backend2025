@@ -137,7 +137,27 @@ async destroy(req, res) {
     res.status(500).json(response);
   }
 }
-
+async search(req, res) {
+  try {
+      const { name } = req.params;
+      const patients = await Patient.findAll({ where: { name: { [Sequelize.Op.like]: `%${name}%` } } });
+      res.json(patients);
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+}
+async findByStatus(req, res) {
+  try {
+      const { status } = req.params;
+      if (!['positive', 'recovered', 'dead'].includes(status)) {
+          return res.status(400).json({ message: 'Invalid status' });
+      }
+      const patients = await Patient.findAll({ where: { status } });
+      res.json(patients);
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+}
 }
 
 // membuat object PatientController
