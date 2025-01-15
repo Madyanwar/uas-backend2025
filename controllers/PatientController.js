@@ -8,7 +8,7 @@ class PatientController {
       // await untuk menunggu hasil dari pemanggilan method all() pada model patient
       const patients = await Patient.all();
       const data = {
-        message: "Menampilkan data student",
+        message: "Menampilkan data patient",
         data: patients,
       };
       res.status(200).json(data);
